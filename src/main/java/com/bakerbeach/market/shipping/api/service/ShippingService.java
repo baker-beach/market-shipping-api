@@ -8,19 +8,16 @@ import com.bakerbeach.market.shipping.api.model.ShippingInfo;
 
 public interface ShippingService {
 
-	ShippingInfo apply(ShippingContext shippingContext) throws ShippingServiceException;
-
 	ShippingContext createShippingContext(ShopContext shopContext, Customer customer, Cart cart)
 			throws ShippingServiceException;
 
-	/**
-	 * Checks and changes shippingContext if necessary.
-	 * 
-	 * @param shopContext
-	 * @param shippingContext
-	 * @return true if context contains contractor, origin and destination
-	 * @throws ShippingServiceException
-	 */
-	Boolean checkShippingContext(ShopContext shopContext, ShippingContext shippingContext) throws ShippingServiceException;
+	Boolean checkShippingContext(ShopContext shopContext, Customer customer, Cart cart, ShippingContext shippingContext)
+			throws ShippingServiceException;
+
+	ShippingInfo apply(ShippingContext shippingContext) throws ShippingServiceException;
+
+	@Deprecated
+	Boolean checkShippingContext(ShopContext shopContext, ShippingContext shippingContext)
+			throws ShippingServiceException;
 
 }
